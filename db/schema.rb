@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170109201018) do
+ActiveRecord::Schema.define(version: 20170109210255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20170109201018) do
     t.string   "end_date"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "owner_id"
+    t.index ["owner_id"], name: "index_dogs_on_owner_id", using: :btree
   end
 
   create_table "owners", force: :cascade do |t|
@@ -37,6 +39,8 @@ ActiveRecord::Schema.define(version: 20170109201018) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "dog_id"
+    t.index ["dog_id"], name: "index_owners_on_dog_id", using: :btree
     t.index ["email"], name: "index_owners_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true, using: :btree
   end
@@ -70,6 +74,8 @@ ActiveRecord::Schema.define(version: 20170109201018) do
     t.index ["reset_password_token"], name: "index_sitters_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "dogs", "owners"
+  add_foreign_key "owners", "dogs"
   add_foreign_key "rentals", "dogs"
   add_foreign_key "rentals", "sitters"
 end

@@ -10,6 +10,11 @@ Rails.application.routes.draw do
 
   root to: 'welcome#index'
 
-  resources :owners
+  resources :owners do
+    resources :dogs
+  end
   resources :sitters
+
+
+
 end
