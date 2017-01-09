@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dog: one
+  sitter: one
+  pending: false
+  approved: false
+  comments: MyString
+
+two:
+  dog: two
+  sitter: two
+  pending: false
+  approved: false
+  comments: MyString

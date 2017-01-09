@@ -1,15 +1,53 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Pupshare</title>
+<head>
+    <!-- <title>TipsyTraveller</title> -->
     <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css', media: 'all' %>
+    <%= stylesheet_link_tag    'https://fonts.googleapis.com/css?family=Cookie', media: 'all' %>
+    <%= stylesheet_link_tag    'https://fonts.googleapis.com/css?family=Lora', media: 'all' %>
+    <%= stylesheet_link_tag    'https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css', media: 'all' %>
+    <%= stylesheet_link_tag    'https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700', media: 'all' %>
+    <%= stylesheet_link_tag    'https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700', media: 'all' %>
+    <%= stylesheet_link_tag    'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css', media: 'all' %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js' %>
+</head>
+<body>
+  <div class="collapse navbar-collapse" id="navcol-1">
+      <ul class="nav navbar-nav navbar-right">
+        <% if current_sitter %>
+          <li role="presentation"><%= link_to 'My Sitter Profile', '/sitters/show' %></li>
+          <li role="presentation"><%= link_to("Logout: #{current_sitter.email}", destroy_sitter_session_path, :method => :delete) %></li>
+            <% else %>
+          <li role="presentation"><%= link_to 'Login in Sitter', '/sitters/sign_in' %></li>
+          <li role="presentation"><%= link_to 'Signup Sitter', '/sitters/sign_up' %></li>
+            <% end %>
+          </ul>
+        </div>
 
-  <body>
-    <h1>this is pupshare!</h1>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav navbar-left">
+              <% if current_owner %>
+                <li role="presentation"><%= link_to 'My Owner Profile', '/owners/show' %></li>
+                <li role="presentation"><%= link_to("Logout: #{current_owner.email}", destroy_owner_session_path, :method => :delete) %></li>
+                  <% else %>
+                <li role="presentation"><%= link_to 'Login in an Owner', '/owners/sign_in' %></li>
+                <li role="presentation"><%= link_to 'Signup as an Owner', '/owners/sign_up' %></li>
+                  <% end %>
+                </ul>
+              </div>
+
+
+              <%- flash.each do |name, msg| -%>
+                    <div class="alert alert-warning">
+                      <strong><%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %></strong>
+                    </div>
+                    <%- end -%>
     <%= yield %>
   </body>
 </html>
