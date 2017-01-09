@@ -1,2 +1,8 @@
-<h1>Dogs#index</h1>
-<p>Find me in app/views/dogs/index.html.erb</p>
+
+<ul>
+  <% @dogs.each do |dog| %>
+    <li><%= dog.name %></li>
+    <% end %>
+    <br>
+    <%= link_to "Back", :back %>
+</ul>
