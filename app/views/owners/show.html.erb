@@ -1,1 +1,11 @@
 Welcome <%= @owner.email %> Owner
+<br>
+<h1>my dogs</h1>
+<% @owner.dogs.each do |dog| %>
+<%= dog.name %><br>
+<%= dog.description %><br>
+
+<% end %>
+
+<br>
+<%= link_to "add a dog!", new_owner_dog_path(current_owner) %>

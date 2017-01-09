@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   get 'owners/show'
 
   get 'sitters/show'
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
 
   root to: 'welcome#index'
 
+  get '/owners/:owner_id/dogs' => 'dogs#index', as: 'dogs'
   resources :owners do
     resources :dogs
   end
