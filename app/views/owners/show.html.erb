@@ -1,4 +1,14 @@
-Welcome <%= @owner.first %> <%= @owner.last %> Owner
 
-
+<h1>Welcome <%= @owner.first %> <%= @owner.last %></h1>
 <p><%= @owner.description %></p>
+<br>
+<h3>my dogs</h3>
+<% @owner.dogs.each do |dog| %>
+<%= image_tag dog.image.url(:medium) %>
+<%= link_to dog.name, owner_dog_path(current_owner, dog) %><br>
+<%= dog.description %><br>
+
+<% end %>
+
+<br>
+<%= link_to "add a dog!", new_owner_dog_path(current_owner) %>
