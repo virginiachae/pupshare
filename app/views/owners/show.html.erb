@@ -16,7 +16,7 @@
 <% dog.rentals.each do |rental| %>
 <% if rental.pending? %>
 <%= link_to rental.sitter.first, sitter_path(rental.sitter) %> for <%= rental.dog.name %><br>
-<%= link_to "approve!", sitter_path(rental.sitter) %><br>
+<%= link_to "approve or deny", dog_rental_path(dog, rental) %><br>
 <% end %>
 <% end %>
 <% end %>

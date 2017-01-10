@@ -10,6 +10,7 @@ class OwnersController < ApplicationController
    @owner = Owner.create(owner_params)
  end
 
+
  private
 
  def owner_params
