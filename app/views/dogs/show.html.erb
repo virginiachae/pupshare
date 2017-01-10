@@ -1,0 +1,6 @@
+<h1><%= @dog.name %></h1>
+<h3><%= @dog.description %></h3>
+
+
+<%= link_to "edit dog", edit_owner_dog_path(@dog) %><br>
+<%= link_to "delete dog", owner_dog_path(current_owner, @dog), method: :delete %>

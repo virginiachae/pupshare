@@ -1,3 +1,28 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get 'owners/show'
+
+  get 'sitters/show'
+
+  devise_for :owners
+  devise_for :sitters
+  get 'welcome/index'
+
+  root to: 'welcome#index'
+
+
+  resources :owners do
+    resources :dogs
+  end
+
+  resources :dogs do
+    resources:rentals
+  end
+
+
+  resources :sitters
+
+  resources :dogs
+
+
 end
