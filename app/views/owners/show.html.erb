@@ -21,6 +21,15 @@
 <% end %>
 <% end %>
 <% end %>
+<hr>
+<h3>My pending Rentals</h3>
+<% @owner.dogs.each do |dog| %>
+<%= image_tag dog.image.url(:medium) %>
+<%= link_to dog.name, owner_dog_path(current_owner, dog) %><br>
+<%= dog.description %><br>
+
+<% end %>
+
 
 <br>
 <%= link_to "add a dog!", new_owner_dog_path(current_owner) %>

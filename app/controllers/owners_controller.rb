@@ -4,10 +4,14 @@ class OwnersController < ApplicationController
 
   def show
     @owner = current_owner
+    @rental = Rental.all
   end
 
   def create
    @owner = Owner.create(owner_params)
+   if @owner.save
+     OwnerMailer.welcome_email(@owner).deliver_now
+   end
  end
 
 
