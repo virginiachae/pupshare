@@ -12,8 +12,13 @@ class RentalsController < ApplicationController
     @rental.pending = true
     @rental.approved = false
     @rental.done_renting = false
+     @owner = @rental.dog.owner
+    p @rental.dog.owner.first
     @rental.save
-    p @rental
+      if @rental.save
+        OwnerMailer.pending_rental(@owner).deliver_now
+      end
+
   end
 
   def edit
