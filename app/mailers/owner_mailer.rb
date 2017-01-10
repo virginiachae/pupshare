@@ -6,4 +6,10 @@ class OwnerMailer < ApplicationMailer
     @url  = 'http://example.com/login'
     mail(to: @owner.email, subject: 'Welcome to My Awesome Site')
   end
+
+  def new_dog(owner)
+    @owner = owner
+    mail(to: @owner.email, subject: 'Pup Created')
+  end
+
 end
