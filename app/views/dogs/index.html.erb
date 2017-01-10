@@ -2,6 +2,7 @@
 <ul>
   <% @dogs.each do |dog| %>
     <li> <%= image_tag(dog.image, height: 100, width: 100)%> <%= dog.name %></li>
+    <%= link_to "rent dog",  new_dog_rental_path(dog) %>
     <% end %>
     <br>
     <%= link_to "Back", :back %>
