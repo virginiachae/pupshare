@@ -8,4 +8,11 @@ class Owner < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+after_create :send_admin_mail
+    def send_admin_mail
+        OwnerMailer.welcome_email(self).deliver
+        
+    end
+
 end
