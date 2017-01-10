@@ -21,6 +21,8 @@ class RentalsController < ApplicationController
   end
 
   def update
+    @rental = Rental.find_by_id(params[:id])
+
   end
 
   def destroy

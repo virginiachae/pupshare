@@ -1,4 +1,6 @@
-<h1>Welcome <%= @owner.first %> <%= @owner.last %></h1>
+<h1>Welcome
+	<%= @owner.first %>
+	<%= @owner.last %></h1>
 <%= image_tag @owner.avatar.url(:medium) %>
 <p><%= @owner.description %></p>
 <br>
@@ -7,7 +9,16 @@
 <%= image_tag dog.image.url(:medium) %>
 <%= link_to dog.name, owner_dog_path(current_owner, dog) %><br>
 <%= dog.description %><br>
+<% end %>
 
+<h3>my dogs pending approval</h3>
+<% @owner.dogs.each do |dog| %>
+<% dog.rentals.each do |rental| %>
+<% if rental.pending? %>
+<%= link_to rental.sitter.first, sitter_path(rental.sitter) %> for <%= rental.dog.name %><br>
+<%= link_to "approve!", sitter_path(rental.sitter) %><br>
+<% end %>
+<% end %>
 <% end %>
 
 <br>
