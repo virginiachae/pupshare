@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(version: 20170110194504) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "address"
+    t.float    "longitude"
+    t.float    "latitude"
     t.index ["owner_id"], name: "index_dogs_on_owner_id", using: :btree
   end
 
