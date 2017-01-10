@@ -7,10 +7,11 @@ class RentalsController < ApplicationController
 
   def new
     @rental = Rental.new
+    @rental.dog = Dog.find_by_id(params[:dog_id])
     @rental.sitter = current_sitter
-    @rental.dog = @dog
+    @rental.pending = true
+    @rental.approved = false
     @rental.save
-
   end
 
   def edit

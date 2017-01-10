@@ -3,6 +3,7 @@
 <br>
 <h3>my dogs</h3>
 <% @owner.dogs.each do |dog| %>
+<%= image_tag dog.image.url(:medium) %>
 <%= link_to dog.name, owner_dog_path(current_owner, dog) %><br>
 <%= dog.description %><br>
 

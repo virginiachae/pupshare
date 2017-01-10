@@ -15,10 +15,14 @@ Rails.application.routes.draw do
     resources :dogs
   end
 
-  resources :dogs
-  resources :sitters
-  resources :rentals
+  resources :dogs do
+    resources:rentals
+  end
 
+
+  resources :sitters
+
+  resources :dogs
 
 
 end
