@@ -15,10 +15,13 @@ Rails.application.routes.draw do
     resources :dogs
   end
 
+  put 'rentals/:id(.:format)' => 'rentals#approve', as: 'approve_rental'
+
   resources :dogs do
     resources:rentals
   end
 
+  resources :rentals
 
   resources :sitters
 

@@ -1,2 +1,8 @@
-<h1>Rentals#show</h1>
-<p>Find me in app/views/rentals/show.html.erb</p>
+	<h1><%= @rental.sitter.first %></h1>
+	<p>
+		wants to rent
+	</p>
+	<h3><%= @rental.dog.name %></h3>
+
+	<%= link_to "approve!", approve_rental_path(@rental), method: :put %><br>
+	<%= link_to "deny", rental_path(@rental), method: :delete %><br>

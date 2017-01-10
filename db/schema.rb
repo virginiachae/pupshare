@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170109234523) do
+ActiveRecord::Schema.define(version: 20170110194504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,8 +62,9 @@ ActiveRecord::Schema.define(version: 20170109234523) do
     t.boolean  "pending"
     t.boolean  "approved"
     t.string   "comments"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.boolean  "done_renting"
     t.index ["dog_id"], name: "index_rentals_on_dog_id", using: :btree
     t.index ["sitter_id"], name: "index_rentals_on_sitter_id", using: :btree
   end

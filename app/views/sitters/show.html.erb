@@ -1,4 +1,3 @@
-
 <h1>Welcome
 	<%= @sitter.first %>
 	<%= @sitter.last %></h1>
@@ -6,3 +5,11 @@
 <p><%= @sitter.description %></p>
 <%= link_to "edit sitter", edit_sitter_registration_path(@sitter) %>
 <br>
+<h3>dogs I am watching</h3>
+<% @sitter.rentals.each do |rental| %>
+<% if rental.approved? && rental.done_renting == false %>
+ <%= rental.dog.name %> <%= link_to "finish rental", rental_path(rental), method: :patch %>
+ <br>
+<% end %>
+<% end %>
+
