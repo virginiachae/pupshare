@@ -1,5 +1,6 @@
 <h1><%= @dog.name %></h1>
-<h3><%= @dog.description %></h3>
+<h3><%= @dog.description %></h3><br>
+<%= image_tag @dog.image.url(:medium) %><br>
 
 
 <%= link_to "edit dog", edit_owner_dog_path(@dog) %><br>

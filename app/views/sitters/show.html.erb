@@ -1,10 +1,10 @@
-
-<h1>Welcome <%= @sitter.first %> <%= @sitter.last %></h1>
+<h1>Welcome
+	<%= @sitter.first %>
+	<%= @sitter.last %></h1>
 <%= image_tag @sitter.avatar.url(:medium) %>
-<p>
-	<%= @sitter.description %>
-</p><br>
-
+<p><%= @sitter.description %></p>
+<%= link_to "edit sitter", edit_sitter_registration_path(@sitter) %>
+<br>
 <h3>dogs I am watching</h3>
 <% @sitter.rentals.each do |rental| %>
 <% if rental.approved? && rental.done_renting == false %>
@@ -12,3 +12,4 @@
  <br>
 <% end %>
 <% end %>
+
