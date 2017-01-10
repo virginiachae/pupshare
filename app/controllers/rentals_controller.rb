@@ -11,20 +11,30 @@ class RentalsController < ApplicationController
     @rental.sitter = current_sitter
     @rental.pending = true
     @rental.approved = false
+    @rental.done_renting = false
     @rental.save
+    p @rental
   end
 
   def edit
   end
 
   def show
+    @rental = Rental.find_by_id(params[:id])
   end
 
   def update
     @rental = Rental.find_by_id(params[:id])
+    @rental.update_attributes(done_renting: true)
+  end
 
+  def approve
+    @rental = Rental.find_by_id(params[:id])
+    @rental.update_attributes(approved: true, pending: false)
   end
 
   def destroy
+    @rental = Rental.find_by_id(params[:id])
+    @rental.destroy
   end
 end

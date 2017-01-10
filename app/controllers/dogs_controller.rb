@@ -16,7 +16,9 @@ class DogsController < ApplicationController
   def create
     @dog = Dog.new(dog_params)
     @dog.owner = current_owner
+    @owner = current_owner
      if @dog.save
+       OwnerMailer.new_dog(@owner).deliver_now
        redirect_to owner_path(current_owner)
      end
   end

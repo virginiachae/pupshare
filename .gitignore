@@ -17,3 +17,7 @@ secrets.sh
 
 # Ignore Byebug command history file.
 .byebug_history
+
+/config/local_env.yml
+
+secrets.sh
