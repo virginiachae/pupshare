@@ -1,9 +1,9 @@
 class OwnersController < ApplicationController
 
-  before_action :authenticate_owner!
+before_action :authenticate_owner!, :only => [:edit, :update, :destroy]
 
   def show
-    @owner = current_owner
+    @owner = Owner.find_by_id(params[:id])
     @rental = Rental.all
   end
 

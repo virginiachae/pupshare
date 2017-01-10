@@ -1,10 +1,11 @@
 class SittersController < ApplicationController
 
-  before_action :authenticate_sitter!
+  before_action :authenticate_sitter!, :only => [:edit, :update, :destroy]
 
   def show
-    @sitter = current_sitter
+    @sitter = Sitter.find_by_id(params[:id])
   end
+
 
   def create
    @sitter = Sitter.create(sitter_params)

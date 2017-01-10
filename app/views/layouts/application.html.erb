@@ -21,7 +21,7 @@
   <div class="collapse navbar-collapse" id="navcol-1">
       <ul class="nav navbar-nav navbar-right">
         <% if current_sitter %>
-          <li role="presentation"><%= link_to 'My Sitter Profile', '/sitters/show' %></li>
+          <li role="presentation"><%= link_to 'My Sitter Profile', sitter_path(current_sitter) %></li>
           <li role="presentation"><%= link_to("Logout: #{current_sitter.email}", destroy_sitter_session_path, :method => :delete) %></li>
             <% else %>
           <li role="presentation"><%= link_to 'Login in Sitter', '/sitters/sign_in' %></li>
@@ -33,7 +33,7 @@
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav navbar-left">
               <% if current_owner %>
-                <li role="presentation"><%= link_to 'My Owner Profile', '/owners/show' %></li>
+                <li role="presentation"><%= link_to 'My Owner Profile', owner_path(current_owner  ) %></li>
                 <li role="presentation"><%= link_to("Logout: #{current_owner.email}", destroy_owner_session_path, :method => :delete) %></li>
                   <% else %>
                 <li role="presentation"><%= link_to 'Login in an Owner', '/owners/sign_in' %></li>
