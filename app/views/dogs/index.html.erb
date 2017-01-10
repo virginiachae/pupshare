@@ -1,7 +1,7 @@
 
 <ul>
   <% @dogs.each do |dog| %>
-    <li> <%= image_tag(dog.image, height: 100, width: 100)%> <%=link_to dog.name, dog_path(@dog) %></li>
+    <li> <%= image_tag(dog.image, height: 100, width: 100)%> <%=link_to dog.name, dog_path(dog) %></li>
     <%= link_to "rent dog",  new_dog_rental_path(dog) %>
     <% end %>
     <br>

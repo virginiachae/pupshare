@@ -1,5 +1,8 @@
-Welcome <%= @sitter.first %> <%= @sitter.last %> Dog Sitter
 
-<%= @sitter.description %>
-
+<h1>Welcome
+	<%= @sitter.first %>
+	<%= @sitter.last %></h1>
 <%= image_tag @sitter.avatar.url(:medium) %>
+<p><%= @sitter.description %></p>
+<%= link_to "edit sitter", edit_sitter_registration_path(@sitter) %>
+<br>
