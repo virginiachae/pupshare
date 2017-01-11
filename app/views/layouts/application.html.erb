@@ -25,7 +25,10 @@
     <nav class="navbar navbar-default navitation-clean">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand navbar-link" href="/dogs"><i class="icon fa fa-paw"></i>PupShare</a>
+          <%= link_to dogs_path, method: :get, class: "navbar-brand navbar-link" do %>
+          <i class="icon fa fa-paw">PupShare</i>
+          <% end %>
+          
           <button class="navbar-toggle collapsed" data-target="#navcol-1" data-toggle="collapse"></button>
         </div>
         <div id="navcol-1" class="collapse navbar-collapse">

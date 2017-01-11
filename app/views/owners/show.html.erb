@@ -1,28 +1,118 @@
-<h1>Welcome
-	<%= @owner.first %>
-	<%= @owner.last %></h1>
-<%= image_tag @owner.avatar.url(:medium) %>
-<p><%= @owner.description %></p>
-<% if current_owner == Owner.find(params[:id]) %>
-<%= link_to "edit owner", edit_owner_registration_path(@owner) %>
-<br>
-<h3>my dogs</h3>
-<% @owner.dogs.each do |dog| %>
-<%= image_tag dog.image.url(:medium) %><br>
-<%= link_to dog.name, owner_dog_path(current_owner, dog) %><br>
-<%= dog.description %><br>
-<% end %>
-<%= link_to "add a dog!", new_owner_dog_path(current_owner) %>
 
-<hr>
-<h3>my dogs pending approval</h3>
-<% @owner.dogs.each do |dog| %>
-<% dog.rentals.each do |rental| %>
-<% if rental.pending? %>
-<%= link_to rental.sitter.first, sitter_path(rental.sitter) %> for <%= rental.dog.name %><br>
-<%= link_to "approve or deny", dog_rental_path(dog, rental) %><br>
-<% end %>
-<% end %>
-<% end %>
-<br>
-<% end %>
+<div class="top-margin">
+	<div class="container">
+	    <div class="row product">
+	        <div class="col-md-5 col-md-offset-0"><%= image_tag(@owner.avatar.url, class: "dog-show-img")%></div>
+	        <div class="col-md-7">
+	            <h2><%= @owner.first %> <%= @owner.last %></h2>
+	            <p><%= @owner.description %></p><br>
+	            <!-- <select>
+	                <option value="" selected="">Chose Your Size</option>
+	                <option value="xxl">XXL</option>
+	                <option value="xl">XL</option>
+	                <option value="m">M</option>
+	                <option value="s">S</option>
+	            </select> -->
+	            <!-- <h3>$149.90 </h3> -->
+							<% if current_owner == Owner.find(params[:id]) %>
+							<%= button_to "edit owner", edit_owner_registration_path(@owner), method: :get, class:"btn btn-primary", type:"button" %>
+	        </div>
+	    </div>
+	    <!-- <div class="page-header">
+	        <h3>Product Details</h3></div>
+	    <p>Sed mollis, urna eu tempus facilisis, diam tellus aliquam tortor, et vestibulum ante quam non justo. Nullam luctus rutrum mattis. Maecenas in pharetra mi, vel mollis odio. Morbi non mauris massa. </p>
+	    <div class="table-responsive">
+	        <table class="table table-striped">
+	            <thead>
+	                <tr>
+	                    <th>Column 1</th>
+	                    <th>Column 2</th>
+	                    <th>Column 3</th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	                <tr>
+	                    <td>Cell1</td>
+	                    <td>Cell2</td>
+	                    <td>Cell3</td>
+	                </tr>
+	                <tr>
+	                    <td>Cell4</td>
+	                    <td>Cell5</td>
+	                    <td>Cell6</td>
+	                </tr>
+	                <tr>
+	                    <td>Cell7</td>
+	                    <td>Cell8</td>
+	                    <td>Cell9</td>
+	                </tr>
+	                <tr>
+	                    <td>Cell10</td>
+	                    <td>Cell11</td>
+	                    <td>Cell</td>
+	                </tr>
+	            </tbody>
+	        </table>
+	    </div> -->
+
+
+
+	    <div class="page-header">
+	        <h3>My Pups</h3></div>
+	    <div class="media">
+	        <div class="media-body">
+						<% @owner.dogs.each do |dog| %>
+							<%= image_tag(dog.image, class: "dog-show-img")%>
+	            <h4><%= link_to dog.name, owner_dog_path(current_owner, dog) %></h4>
+							<% end %>
+							<%= link_to "add a dog!", new_owner_dog_path(current_owner) %>
+	        </div>
+	    </div>
+			<br>
+
+			<div class="page-header">
+					<h3>Dogs Pending My Approval</h3></div>
+			<div class="media">
+					<div class="media-body">
+						<% @owner.dogs.each do |dog| %>
+						<% dog.rentals.each do |rental| %>
+						<% if rental.pending? %>
+							<h4><%= link_to rental.sitter.first, sitter_path(rental.sitter) %> for <%= rental.dog.name %><br></h4>
+							<%= link_to "approve or deny", dog_rental_path(dog, rental) %><br>
+							<% end %>
+							<% end %>
+							<% end %>
+					</div>
+			</div>
+			<br>
+
+			<div class="page-header">
+					<h3>My Dogs that are Being Watched</h3></div>
+			<div class="media">
+					<div class="media-body">
+						<% @owner.dogs.each do |dog| %>
+						<% dog.rentals.each do |rental| %>
+						<% if rental.approved? && rental.done_renting == false %>
+							<h4><%= rental.dog.name %> <%= link_to "finish rental", rental_path(rental), method: :patch %></h4>
+							<% end %>
+							<% end %>
+							<% end %>
+					</div>
+			</div>
+	    <br>
+			<% end %>
+	    <hr>
+	    <%= link_to "Back", :back, method: :get %>
+	</div>
+<!-- <footer class="site-footer">
+	    <div class="container">
+	        <hr>
+	        <div class="row">
+	            <div class="col-sm-6">
+	                <h5>PupShare © 2016</h5></div>
+	            <div class="col-sm-6 social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
+	        </div>
+	    </div>
+	</footer> -->
+
+</div>

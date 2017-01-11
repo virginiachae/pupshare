@@ -18,7 +18,7 @@ class RentalsController < ApplicationController
       if @rental.save
         OwnerMailer.pending_rental(@owner).deliver_now
       end
-
+      redirect_to sitter_path(current_sitter)
   end
 
   def edit
@@ -28,18 +28,22 @@ class RentalsController < ApplicationController
     @rental = Rental.find_by_id(params[:id])
   end
 
-  def update
-    @rental = Rental.find_by_id(params[:id])
-    @rental.update_attributes(done_renting: true)
-  end
-
   def approve
     @rental = Rental.find_by_id(params[:id])
     @rental.update_attributes(approved: true, pending: false)
+    redirect_to owner_path(current_owner)
   end
+
+  def update
+    @rental = Rental.find_by_id(params[:id])
+    @rental.update_attributes(done_renting: true)
+    redirect_to owner_path(current_owner)
+  end
+
 
   def destroy
     @rental = Rental.find_by_id(params[:id])
     @rental.destroy
+    redirect_to dogs_path
   end
 end
