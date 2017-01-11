@@ -3,6 +3,9 @@
 						<div class="col-lg-4 col-sm-6 item"><%= image_tag(@dog.image, class: "dog-show-img")%>
 							<h2><%= @dog.name %></h2>
             <p><%= @dog.description %> </p>
+            <h3>Dates Available</h3>
+            <p>Start Date: <%= @dog.date_start %> </p>
+            <p>End Date: <%= @dog.date_end %> </p>
                 <% if current_owner == Owner.find(params[:owner_id]) %>
 								<%= link_to "edit dog", edit_owner_dog_path(@dog) %><br>
 								<%= link_to "delete dog", owner_dog_path(current_owner, @dog), method: :delete %>
