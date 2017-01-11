@@ -4,12 +4,6 @@ class DogsController < ApplicationController
     @hash = Gmaps4rails.build_markers(@dogs) do |dog, marker|
       marker.lat dog.latitude
       marker.lng dog.longitude
-      marker.infowindow dog.description
-      marker.picture({
-       "url" => "http://people.mozilla.com/~faaborg/files/shiretoko/firefoxIcon/firefox-32.png",
-       "width" =>  32,
-       "height" => 32})
-       marker.json({name: dog.name})
     end
   end
 
@@ -55,6 +49,6 @@ class DogsController < ApplicationController
 
   private
   def dog_params
-    params.require(:dog).permit(:name, :description, :image)
+    params.require(:dog).permit(:name, :description, :image, :address, :longitude, :latitude)
 end
 end
