@@ -5,8 +5,9 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css', media: 'all' %>
-    <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Cookie', media: 'all' %>
-    <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Lora', media: 'all' %>
+
+    <%= stylesheet_link_tag    'https://fonts.googleapis.com/css?family=Cookie', media: 'all' %>
+    <%= stylesheet_link_tag    'https://fonts.googleapis.com/css?family=Lora', media: 'all' %>
     <%= stylesheet_link_tag    'https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css', media: 'all' %>
     <%= stylesheet_link_tag    'https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700', media: 'all' %>
     <%= stylesheet_link_tag    'https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700', media: 'all' %>
@@ -25,7 +26,9 @@
     <nav class="navbar navbar-default navitation-clean">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand navbar-link" href="/dogs"><i class="icon fa fa-paw"></i>PupShare</a>
+          <%= link_to dogs_path, method: :get, class: "navbar-brand navbar-link" do %>
+            <i class="icon fa fa-paw">PupShare</i>
+              <% end %>
           <button class="navbar-toggle collapsed" data-target="#navcol-1" data-toggle="collapse"></button>
         </div>
         <div id="navcol-1" class="collapse navbar-collapse">

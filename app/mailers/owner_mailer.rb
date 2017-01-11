@@ -4,7 +4,7 @@ class OwnerMailer < ApplicationMailer
   def welcome_email(owner)
     @owner = owner
     @url  = 'http://example.com/login'
-    mail(to: @owner.email, subject: 'Welcome to My Awesome Site')
+    mail(to: @owner.email, subject: 'Welcome to Pup Share')
   end
 
   def new_dog(owner)
@@ -14,7 +14,7 @@ class OwnerMailer < ApplicationMailer
 
   def pending_rental(owner)
     @owner = owner
-    mail(to: @owner.email, subject: 'Pending Rental')
+    mail(to: @owner.email, subject: 'Pending Pup Rental Request')
   end
 
 end
