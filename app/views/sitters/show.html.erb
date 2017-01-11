@@ -3,6 +3,7 @@
 	<%= @sitter.last %></h1>
 <%= image_tag @sitter.avatar.url(:medium) %>
 <p><%= @sitter.description %></p>
+<% if current_sitter == Sitter.find(params[:id]) %>
 <%= link_to "edit sitter", edit_sitter_registration_path(@sitter) %>
 <br>
 <hr>
@@ -19,5 +20,6 @@
  <% if rental.done_renting? %>
   <%= rental.dog.name %>
   <br>
+	<% end %>
 	<% end %>
 	<% end %>

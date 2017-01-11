@@ -1,9 +1,24 @@
+<div class="projects-clean">
+    <div class="container">
+        <div class="intro">
+            <h2 class="text-center">Our Dogs</h2>
+            <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae. </p>
+        </div>
+        <div class="row projects">
+            <% @dogs.each do |dog| %>
+            <div class="col-lg-4 col-sm-6 item"><%= image_tag(dog.image, class: "img-responsive")%>
+                <h3 class="name"><%=link_to dog.name, owner_dog_path(dog.owner, dog) %></h3>
+                <p class="description"><%= dog.description %></p>
+                <% if current_sitter != nil %>
+                <%= link_to "rent dog",  new_dog_rental_path(dog) %>
+                <% end %>
 
-<ul>
-  <% @dogs.each do |dog| %>
-    <li> <%= image_tag(dog.image, height: 100, width: 100)%> <%=link_to dog.name, dog_path(dog) %></li>
-    <%= link_to "rent dog",  new_dog_rental_path(dog) %>
-    <% end %>
-    <br>
-    <%= link_to "Back", :back %>
-</ul>
+                <br>
+            </div>
+            <% end %>
+        </div>
+        <br>
+        <hr>
+        <%= link_to "Back", :back %>
+    </div>
+</div>

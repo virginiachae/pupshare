@@ -10,7 +10,7 @@ before_action :authenticate_owner!, :only => [:edit, :update, :destroy]
   def create
    @owner = Owner.create(owner_params)
    if @owner.save
-     OwnerMailer.welcome_email(@owner).deliver_now
+     OwnerMailer.welcome_email(@owner).deliver
    end
  end
 
