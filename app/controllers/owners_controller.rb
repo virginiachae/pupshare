@@ -1,16 +1,16 @@
 class OwnersController < ApplicationController
 
-  before_action :authenticate_owner!
+before_action :authenticate_owner!, :only => [:edit, :update, :destroy]
 
   def show
-    @owner = current_owner
+    @owner = Owner.find_by_id(params[:id])
     @rental = Rental.all
   end
 
   def create
    @owner = Owner.create(owner_params)
    if @owner.save
-     OwnerMailer.welcome_email(@owner).deliver_now
+     OwnerMailer.welcome_email(@owner).deliver
    end
  end
 
