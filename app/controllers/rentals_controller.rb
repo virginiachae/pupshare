@@ -18,6 +18,7 @@ class RentalsController < ApplicationController
     @rental.save
       if @rental.save
         OwnerMailer.pending_rental(@owner).deliver_now
+        SitterMailer.scheduled_rental(@sitter).deliver_now
       end
 
   end
@@ -36,7 +37,12 @@ class RentalsController < ApplicationController
 
   def approve
     @rental = Rental.find_by_id(params[:id])
+    @sitter = @rental.sitter
+    @owner = current_owner
     @rental.update_attributes(approved: true, pending: false)
+    if @rental.save
+      SitterMailer.rental_approved(@sitter, @owner, @rental).deliver_now
+    end
   end
 
   def destroy
