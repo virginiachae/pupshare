@@ -19,6 +19,7 @@
  <% @sitter.rentals.each do |rental| %>
  <% if rental.done_renting? %>
   <%= rental.dog.name %>
+	<%= rental.dog.created_at.strftime("%m-%d-%Y") %>
   <br>
 	<% end %>
 	<% end %>
