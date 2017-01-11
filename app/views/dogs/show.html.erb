@@ -1,7 +1,16 @@
-<h1><%= @dog.name %></h1>
-<h3><%= @dog.description %></h3><br>
-<%= image_tag @dog.image.url(:medium) %><br>
+    <div class="container">
+        <div class="intro">
+						<div class="col-lg-4 col-sm-6 item"><%= image_tag(@dog.image, class: "dog-show-img")%>
+							<h2><%= @dog.name %></h2>
+            <p><%= @dog.description %> </p>
+                <% if current_owner == Owner.find(params[:owner_id]) %>
+								<%= link_to "edit dog", edit_owner_dog_path(@dog) %><br>
+								<%= link_to "delete dog", owner_dog_path(current_owner, @dog), method: :delete %>
+                <% end %>
 
-
-<%= link_to "edit dog", edit_owner_dog_path(@dog) %><br>
-<%= link_to "delete dog", owner_dog_path(current_owner, @dog), method: :delete %>
+        <br>
+        <hr>
+        <%= link_to "Back", :back %>
+			</div>
+    </div>
+</div>

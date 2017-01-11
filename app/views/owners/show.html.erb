@@ -3,6 +3,7 @@
 	<%= @owner.last %></h1>
 <%= image_tag @owner.avatar.url(:medium) %>
 <p><%= @owner.description %></p>
+<% if current_owner == Owner.find(params[:id]) %>
 <%= link_to "edit owner", edit_owner_registration_path(@owner) %>
 <br>
 <h3>my dogs</h3>
@@ -11,7 +12,9 @@
 <%= link_to dog.name, owner_dog_path(current_owner, dog) %><br>
 <%= dog.description %><br>
 <% end %>
+<%= link_to "add a dog!", new_owner_dog_path(current_owner) %>
 
+<hr>
 <h3>my dogs pending approval</h3>
 <% @owner.dogs.each do |dog| %>
 <% dog.rentals.each do |rental| %>
@@ -21,15 +24,5 @@
 <% end %>
 <% end %>
 <% end %>
-<hr>
-<h3>My pending Rentals</h3>
-<% @owner.dogs.each do |dog| %>
-<%= image_tag dog.image.url(:medium) %>
-<%= link_to dog.name, owner_dog_path(current_owner, dog) %><br>
-<%= dog.description %><br>
-
-<% end %>
-
-
 <br>
-<%= link_to "add a dog!", new_owner_dog_path(current_owner) %>
+<% end %>
