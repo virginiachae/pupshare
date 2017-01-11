@@ -4,6 +4,8 @@ class DogsController < ApplicationController
     @hash = Gmaps4rails.build_markers(@dogs) do |dog, marker|
       marker.lat dog.latitude
       marker.lng dog.longitude
+      marker.infowindow dog.description
+      marker.json({image: dog.image})
     end
   end
 
