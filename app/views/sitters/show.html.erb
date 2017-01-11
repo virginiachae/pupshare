@@ -3,8 +3,10 @@
 	<%= @sitter.last %></h1>
 <%= image_tag @sitter.avatar.url(:medium) %>
 <p><%= @sitter.description %></p>
+<% if current_sitter == Sitter.find(params[:id]) %>
 <%= link_to "edit sitter", edit_sitter_registration_path(@sitter) %>
 <br>
+<hr>
 <h3>dogs I am watching</h3>
 <% @sitter.rentals.each do |rental| %>
 <% if rental.approved? && rental.done_renting == false %>
@@ -12,10 +14,12 @@
  <br>
  <% end %>
  <% end %>
+ <hr>
  <h3>dogs I have watched in the past</h3>
  <% @sitter.rentals.each do |rental| %>
- <% if rental.approved? && rental.done_renting? %>
+ <% if rental.done_renting? %>
   <%= rental.dog.name %>
   <br>
+	<% end %>
 	<% end %>
 	<% end %>

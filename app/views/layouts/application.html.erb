@@ -25,7 +25,7 @@
     <nav class="navbar navbar-default navitation-clean">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand navbar-link" href="/"><i class="icon fa fa-paw"></i>PupShare</a>
+          <a class="navbar-brand navbar-link" href="/dogs"><i class="icon fa fa-paw"></i>PupShare</a>
           <button class="navbar-toggle collapsed" data-target="#navcol-1" data-toggle="collapse"></button>
         </div>
         <div id="navcol-1" class="collapse navbar-collapse">
@@ -34,7 +34,7 @@
               <a class="dropdown-toggle" aria-expanded="false" href="#" data-toggle="dropdown">Sitter<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <% if current_sitter %>
-                  <li role="presentation"><%= link_to 'My Sitter Profile', '/sitters/show' %></li>
+                  <li role="presentation"><%= link_to 'My Sitter Profile', sitter_path(current_sitter) %></li>
                   <li role="presentation"><%= link_to("Logout: #{current_sitter.email}", destroy_sitter_session_path, :method => :delete) %></li>
                 <% else %>
                   <li role="presentation"><%= link_to 'Login in Sitter', '/sitters/sign_in' %></li>
@@ -46,7 +46,7 @@
               <a class="dropdown-toggle" aria-expanded="false" href="#" data-toggle="dropdown">Owner<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <% if current_owner %>
-                  <li role="presentation"><%= link_to 'My Owner Profile', '/owners/show' %></li>
+                  <li role="presentation"><%= link_to 'My Owner Profile', owner_path(current_owner) %></li>
                   <li role="presentation"><%= link_to("Logout: #{current_owner.email}", destroy_owner_session_path, :method => :delete) %></li>
                 <% else %>
                   <li role="presentation"><%= link_to 'Login in an Owner', '/owners/sign_in' %></li>
@@ -60,14 +60,12 @@
     </nav>
   </div>
   <div>
-    <div class="dog-button">
-      <%= link_to 'View All Dogs', '/dogs' %>
-    </div>
     <%- flash.each do |name, msg| -%>
       <div class="alert alert-warning">
         <strong><%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %></strong>
       </div>
     <%- end -%>
+
     <%= yield %>
   </body>
 </html>

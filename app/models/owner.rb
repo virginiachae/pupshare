@@ -12,6 +12,7 @@ class Owner < ApplicationRecord
 after_create :send_admin_mail
     def send_admin_mail
         OwnerMailer.welcome_email(self).deliver
+
     end
 
 end
