@@ -8,4 +8,11 @@ class Sitter < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+
+    after_create :send_admin_mail
+      def send_admin_mail
+        SitterMailer.welcome_email(self).deliver
+       end
+
 end

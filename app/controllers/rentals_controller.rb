@@ -13,10 +13,12 @@ class RentalsController < ApplicationController
     @rental.approved = false
     @rental.done_renting = false
      @owner = @rental.dog.owner
+     @sitter = @rental.sitter
     p @rental.dog.owner.first
     @rental.save
       if @rental.save
         OwnerMailer.pending_rental(@owner).deliver_now
+        SitterMailer.scheduled_rental(@sitter).deliver_now
       end
       redirect_to sitter_path(current_sitter)
   end
@@ -28,22 +30,30 @@ class RentalsController < ApplicationController
     @rental = Rental.find_by_id(params[:id])
   end
 
-  def approve
-    @rental = Rental.find_by_id(params[:id])
-    @rental.update_attributes(approved: true, pending: false)
-    redirect_to owner_path(current_owner)
-  end
-
   def update
     @rental = Rental.find_by_id(params[:id])
     @rental.update_attributes(done_renting: true)
     redirect_to owner_path(current_owner)
+    end
+  
+  def approve
+    @rental = Rental.find_by_id(params[:id])
+    @sitter = @rental.sitter
+    @owner = current_owner
+    @rental.update_attributes(approved: true, pending: false)
+    if @rental.save
+      SitterMailer.rental_approved(@sitter, @owner, @rental).deliver_now
+      redirect_to owner_path(current_owner)
+    end
   end
-
 
   def destroy
     @rental = Rental.find_by_id(params[:id])
+    @sitter = @rental.sitter
     @rental.destroy
-    redirect_to dogs_path
+      if @rental.destroy
+        SitterMailer.declined_rental(@sitter, @rental).deliver_now
+        redirect_to dogs_path
+      end
   end
 end
