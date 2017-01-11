@@ -1,6 +1,10 @@
 class DogsController < ApplicationController
   def index
     @dogs = Dog.all
+    @hash = Gmaps4rails.build_markers(@dogs) do |dog, marker|
+      marker.lat dog.latitude
+      marker.lng dog.longitude
+    end
   end
 
   def create
@@ -45,6 +49,6 @@ class DogsController < ApplicationController
 
   private
   def dog_params
-    params.require(:dog).permit(:name, :description, :image)
+    params.require(:dog).permit(:name, :description, :image, :address, :longitude, :latitude)
 end
 end
