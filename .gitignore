@@ -21,5 +21,7 @@ secrets.sh
 /config/local_env.yml
 
 secrets.sh
+
 # Ignore application configuration
 /config/application.yml
+
