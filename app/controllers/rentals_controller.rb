@@ -13,6 +13,7 @@ class RentalsController < ApplicationController
     @rental.approved = false
     @rental.done_renting = false
      @owner = @rental.dog.owner
+     @sitter = @rental.sitter
     p @rental.dog.owner.first
     @rental.save
       if @rental.save
