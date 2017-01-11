@@ -23,4 +23,13 @@ class SitterMailer < ApplicationMailer
     @rental = rental
     mail(to: @sitter.email, subject: 'Rental Approved')
   end
+
+  def declined_rental(sitter, rental)
+    @sitter = sitter
+    @rental = rental
+    mail(to: @sitter.email, subject: 'Not this time!')
+  end
+
+
+
 end

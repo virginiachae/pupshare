@@ -47,6 +47,10 @@ class RentalsController < ApplicationController
 
   def destroy
     @rental = Rental.find_by_id(params[:id])
+    @sitter = @rental.sitter
     @rental.destroy
+      if @rental.destroy
+        SitterMailer.declined_rental(@sitter, @rental).deliver_now
+      end
   end
 end
