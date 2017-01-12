@@ -5,6 +5,9 @@
         <div class="col-md-5 col-md-offset-1">
             <h2><%= @dog.name %></h2>
             <p><%= @dog.description %></p><br>
+            <h3> Dates Available </h3>
+            <p>Start Date: <%= @dog.date_start %></p>
+            <p>End Date: <%= @dog.date_end%></p><br>
             <% if current_owner != nil && current_owner == Owner.find(params[:owner_id]) %>
             <%= button_to "edit dog", edit_owner_dog_path(current_owner, @dog), method: :get, class:"btn btn-primary", type:"button" %><br>
             <%= button_to "delete dog", owner_dog_path(current_owner, @dog), method: :delete, class:"btn btn-danger", type:"button" %>
@@ -36,27 +39,5 @@
     <hr>
     <%= link_to "Back", :back, method: :get %>
 </div>
-<!-- <footer class="site-footer">
-    <div class="container">
-        <div class="intro">
-						<div class="col-lg-4 col-sm-6 item"><%= image_tag(@dog.image, class: "dog-show-img")%>
-							<h2><%= @dog.name %></h2>
-            <p><%= @dog.description %> </p>
-            <h3>Dates Available</h3>
-            <p>Start Date: <%= @dog.date_start %> </p>
-            <p>End Date: <%= @dog.date_end %> </p>
-                <% if current_owner == Owner.find(params[:owner_id]) %>
-								<%= link_to "edit dog", edit_owner_dog_path(@dog) %><br>
-								<%= link_to "delete dog", owner_dog_path(current_owner, @dog), method: :delete %>
-                <% end %>
 
-        <br>
-        <hr>
-        <div class="row">
-            <div class="col-sm-6">
-                <h5>PupShare © 2016</h5></div>
-            <div class="col-sm-6 social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
-        </div>
-    </div>
-</footer> -->
 </div>

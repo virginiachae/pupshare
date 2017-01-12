@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- <title>PupShare</title> -->
+    <title>PupShare</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css', media: 'all' %>
@@ -36,13 +36,16 @@
             <li class="dropdown">
               <a class="dropdown-toggle" aria-expanded="false" href="#" data-toggle="dropdown">Pup Friend<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
+                
                 <% if current_sitter %>
                   <li role="presentation"><%= link_to 'My Pup Friend Profile', sitter_path(current_sitter) %></li>
                   <li role="presentation"><%= link_to("Logout: #{current_sitter.email}", destroy_sitter_session_path, :method => :delete) %></li>
-                <% else %>
+
+                <% elsif current_owner == nil %>
                   <li role="presentation"><%= link_to 'Login in Pup Friend', '/sitters/sign_in' %></li>
                   <li role="presentation"><%= link_to 'Signup Pup Friend', '/sitters/sign_up' %></li>
                 <% end %>
+
               </ul>
             </li>
             <li class="dropdown">
@@ -51,7 +54,7 @@
                 <% if current_owner %>
                   <li role="presentation"><%= link_to 'My Owner Profile', owner_path(current_owner) %></li>
                   <li role="presentation"><%= link_to("Logout: #{current_owner.email}", destroy_owner_session_path, :method => :delete) %></li>
-                <% else %>
+                <% elsif current_sitter == nil %>
                   <li role="presentation"><%= link_to 'Login in an Owner', '/owners/sign_in' %></li>
                   <li role="presentation"><%= link_to 'Signup as an Owner', '/owners/sign_up' %></li>
                 <% end %>

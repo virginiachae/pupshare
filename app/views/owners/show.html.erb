@@ -6,12 +6,14 @@
 	        <div class="col-md-7">
 	            <h2><%= @owner.first %> <%= @owner.last %></h2>
 	            <p><%= @owner.description %></p><br>
+
 							<% if current_owner == Owner.find(params[:id]) %>
 							<%= button_to "edit owner", edit_owner_registration_path(@owner), method: :get, class:"btn btn-primary", type:"button" %>
 	        </div>
 	    </div>
 			<br>
 			<hr>
+
 			<div class="page-header">
 					<h3>My Pups</h3></div>
 			<div class="row projects">
@@ -52,6 +54,7 @@
 						<% dog.rentals.each do |rental| %>
 						<% if rental.approved? && rental.done_renting == false %>
 							<h4><%= rental.dog.name %></h4>
+							<% flash[:notice] = "You have successfully shared your dog." %>
 							<%= button_to "finish rental", rental_path(rental), method: :patch, class:"btn btn-primary" %>
 							<% end %>
 							<% end %>
@@ -63,15 +66,5 @@
 	    <hr>
 	    <%= link_to "Back", :back, method: :get %>
 	</div>
-<!-- <footer class="site-footer">
-	    <div class="container">
-	        <hr>
-	        <div class="row">
-	            <div class="col-sm-6">
-	                <h5>PupShare © 2016</h5></div>
-	            <div class="col-sm-6 social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
-	        </div>
-	    </div>
-	</footer> -->
 
 </div>
