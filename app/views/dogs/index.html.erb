@@ -19,7 +19,7 @@
                 <h3 class="name"><%=link_to dog.name, owner_dog_path(dog.owner, dog) %></h3>
                 <p class="description"><%= dog.description %></p>
                 <% if current_sitter != nil && current_sitter.rentals.all? {|rental| rental.pending == false && rental.done_renting == true} %>
-                <%= link_to "rent dog",  new_dog_rental_path(dog) %>
+                <%= link_to "request to share this dog",  new_dog_rental_path(dog) %>
                 <% end %>
                 <br>
             </div>

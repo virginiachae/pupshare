@@ -35,7 +35,7 @@ class RentalsController < ApplicationController
     @rental.update_attributes(done_renting: true)
     redirect_to owner_path(current_owner)
     end
-  
+
   def approve
     @rental = Rental.find_by_id(params[:id])
     @sitter = @rental.sitter

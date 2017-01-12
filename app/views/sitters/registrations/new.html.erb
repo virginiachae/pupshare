@@ -1,5 +1,5 @@
-<div class="form-control">
-  <h2>Sign up Sitter</h2>
+<div class="container">
+  <h2>Sign up as a Pup Friend</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
     <%= devise_error_messages! %>
@@ -55,5 +55,5 @@
     </div>
   <% end %>
 
-  <%= render "sitters/shared/links" %>
+<p>Already a Pup Friend?</p>  <%= render "sitters/shared/links" %>
 </div>

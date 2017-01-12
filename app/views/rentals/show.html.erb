@@ -11,7 +11,7 @@
 			<br>
 			<div class="row product">
 	        <div class="col-md-5 col-md-offset-0">
-						<h2><%= @rental.sitter.first %> wants to rent <%= @rental.dog.name %></h2>
+						<h2><%= @rental.sitter.first %> wants to share <%= @rental.dog.name %></h2>
 						<%= button_to "approve!", approve_rental_path(@rental), method: :put, class:"btn btn-primary" %><br>
 						<%= button_to "deny", rental_path(@rental), method: :delete, class:"btn btn-danger" %><br>
 					</div>
