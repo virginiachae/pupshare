@@ -6,6 +6,7 @@ class DogsController < ApplicationController
       marker.lng dog.longitude
       marker.infowindow dog.description
       marker.json({image: dog.image(:thumb)})
+
     end
   end
 
