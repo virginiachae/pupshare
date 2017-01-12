@@ -10,7 +10,10 @@
 							<% if current_owner == Owner.find(params[:id]) %>
 							<%= button_to "edit owner", edit_owner_registration_path(@owner), method: :get, class:"btn btn-primary", type:"button" %><br>
 							<%= button_to "add dog", new_owner_dog_path(@owner), method: :get, class:"btn btn-success", type:"button" %>
+
 	        </div>
+
+					</div>
 	    </div>
 			<br>
 			<hr>
@@ -38,7 +41,7 @@
 						<% @owner.dogs.each do |dog| %>
 						<% dog.rentals.each do |rental| %>
 						<% if rental.pending? %>
-							<h4><%= link_to rental.sitter.first, sitter_path(rental.sitter) %> wants to rent <%= rental.dog.name %><br></h4>
+							<h4><%= link_to rental.sitter.first, sitter_path(rental.sitter) %> wants to share <%= rental.dog.name %><br></h4>
 							<%= link_to "approve or deny", dog_rental_path(dog, rental) %><br>
 							<% end %>
 							<% end %>
@@ -48,7 +51,7 @@
 			<br>
 
 			<div class="page-header">
-					<h3>My Dogs that are Being Watched</h3></div>
+					<h3>My Dogs that are Being Shared</h3></div>
 			<div class="media">
 					<div class="media-body">
 						<% @owner.dogs.each do |dog| %>

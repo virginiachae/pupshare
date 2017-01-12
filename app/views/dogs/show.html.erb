@@ -8,13 +8,12 @@
             <h3> Dates Available </h3>
             <p>Start Date: <%= @dog.date_start %></p>
             <p>End Date: <%= @dog.date_end%></p><br>
-
             <% if current_owner != nil && current_owner == Owner.find(params[:owner_id]) %>
             <%= button_to "edit dog", edit_owner_dog_path(current_owner, @dog), method: :get, class:"btn btn-primary", type:"button" %><br>
             <%= button_to "delete dog", owner_dog_path(current_owner, @dog), method: :delete, class:"btn btn-danger", type:"button" %>
             <% end %>
             <% if current_sitter != nil && current_sitter.rentals.all? {|rental| rental.pending == false && rental.done_renting == true} %>
-            <%= button_to "rent dog",  new_dog_rental_path(@dog), method: :get, class:"btn btn-primary", type:"button" %>
+            <%= button_to "request to share this dog",  new_dog_rental_path(@dog), method: :get, class:"btn btn-primary", type:"button" %>
             <% end %>
         </div>
     </div>

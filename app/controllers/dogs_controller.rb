@@ -1,4 +1,7 @@
 class DogsController < ApplicationController
+
+before_action :authenticate_owner!, :only => [:edit, :update, :destroy]
+
   def index
     @dogs = Dog.all
     @hash = Gmaps4rails.build_markers(@dogs) do |dog, marker|
