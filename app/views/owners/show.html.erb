@@ -11,6 +11,8 @@
 							<%= button_to "edit owner", edit_owner_registration_path(@owner), method: :get, class:"btn btn-primary", type:"button" %><br>
 							<%= button_to "add dog", new_owner_dog_path(@owner), method: :get, class:"btn btn-success", type:"button" %>
 
+	        </div>
+
 					</div>
 	    </div>
 			<br>
@@ -56,7 +58,6 @@
 						<% dog.rentals.each do |rental| %>
 						<% if rental.approved? && rental.done_renting == false %>
 							<h4><%= rental.dog.name %></h4>
-							<% flash[:notice] = "You have successfully shared your dog." %>
 							<%= button_to "finish rental", rental_path(rental), method: :patch, class:"btn btn-primary" %>
 							<% end %>
 							<% end %>

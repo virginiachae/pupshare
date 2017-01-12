@@ -17,6 +17,7 @@ class RentalsController < ApplicationController
     p @rental.dog.owner.first
     @rental.save
       if @rental.save
+        flash[:notice] = "Your rental request has been sent to the owner."
         OwnerMailer.pending_rental(@owner).deliver_now
         SitterMailer.scheduled_rental(@sitter).deliver_now
       end
@@ -33,7 +34,10 @@ class RentalsController < ApplicationController
   def update
     @rental = Rental.find_by_id(params[:id])
     @rental.update_attributes(done_renting: true)
-    redirect_to owner_path(current_owner)
+      if @rental.save
+        flash[:notice] = "You have successfully ended the Pup Share."
+        redirect_to owner_path(current_owner)
+      end
     end
 
   def approve
@@ -42,6 +46,7 @@ class RentalsController < ApplicationController
     @owner = current_owner
     @rental.update_attributes(approved: true, pending: false)
     if @rental.save
+      flash[:notice] = "You have approved #{@sitter.first}."
       SitterMailer.rental_approved(@sitter, @owner, @rental).deliver_now
       redirect_to owner_path(current_owner)
     end
@@ -52,6 +57,7 @@ class RentalsController < ApplicationController
     @sitter = @rental.sitter
     @rental.destroy
       if @rental.destroy
+        flash[:notice] = "Your Pup Share request has been canceled."
         SitterMailer.declined_rental(@sitter, @rental).deliver_now
         redirect_to dogs_path
       end
