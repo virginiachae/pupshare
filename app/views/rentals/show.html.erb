@@ -1,8 +1,22 @@
-	<h1><%= @rental.sitter.first %></h1>
-	<p>
-		wants to rent
-	</p>
-	<h3><%= @rental.dog.name %></h3>
 
-	<%= link_to "approve!", approve_rental_path(@rental), method: :put %><br>
-	<%= link_to "deny", rental_path(@rental), method: :delete %><br>
+	<div class="top-margin">
+	<div class="container">
+	    <div class="row product">
+
+				<% if current_owner != nil && current_owner == @rental.dog.owner %>
+	        <div class="col-md-5 col-md-offset-0"><%= image_tag(@rental.sitter.avatar.url, class: "dog-show-img")%></div>
+	        <div class="col-md-5 col-md-offset-2"><%= image_tag(@rental.dog.image, class: "dog-show-img")%></div>
+	        </div>
+
+			<br>
+			<div class="row product">
+	        <div class="col-md-5 col-md-offset-0">
+						<h2><%= @rental.sitter.first %> wants to rent <%= @rental.dog.name %></h2>
+						<%= button_to "approve!", approve_rental_path(@rental), method: :put, class:"btn btn-primary" %><br>
+						<%= button_to "deny", rental_path(@rental), method: :delete, class:"btn btn-danger" %><br>
+					</div>
+					<% end %>
+	    </div>
+	    <%= link_to "Back", :back, method: :get %>
+	</div>
+	</div>

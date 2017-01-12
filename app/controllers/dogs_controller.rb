@@ -5,7 +5,9 @@ class DogsController < ApplicationController
       marker.lat dog.latitude
       marker.lng dog.longitude
       marker.infowindow dog.description
-      marker.json({image: dog.image})
+      marker.json({
+              image: dog.image(:thumb)
+              })
     end
   end
 
