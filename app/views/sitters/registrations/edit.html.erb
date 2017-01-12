@@ -1,4 +1,5 @@
-<h2>Edit Sitter <%= resource_name.to_s.humanize %></h2>
+<div class="container">
+<h2>Edit Sitter Profile</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -32,7 +33,6 @@
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
     <% if @minimum_password_length %>
-      <br />
       <em><%= @minimum_password_length %> characters minimum</em>
     <% end %>
   </div>
@@ -43,24 +43,24 @@
   </div>
 
   <div class="field">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar %>
+  </div>
+<br>
+  <div class="field">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, class: "form-control", autocomplete: "off" %>
   </div>
-
-  <div class="field">
-    <%= f.label :avatar %>
-    <%= f.file_field :avatar, class: "form-control" %>
-
-  </div>
-
-
+<br>
   <div class="actions">
-    <%= f.submit "Update", class: "btn btn-block btn-success" %>
+    <%= f.submit "Update", class:"btn btn-primary"%>
+
   </div>
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<hr>
+<br>
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-danger" %></p>
 
 <%= link_to "Back", :back %>
+
+</div>
