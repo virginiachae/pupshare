@@ -5,9 +5,7 @@ class DogsController < ApplicationController
       marker.lat dog.latitude
       marker.lng dog.longitude
       marker.infowindow dog.description
-      marker.json({
-              image: dog.image(:thumb)
-              })
+      marker.json({image: dog.image(:thumb)})
     end
   end
 
@@ -15,10 +13,10 @@ class DogsController < ApplicationController
     @dog = Dog.new(dog_params)
     @dog.owner = current_owner
     @owner = current_owner
-     if @dog.save
-       OwnerMailer.new_dog(@owner).deliver_now
-       redirect_to owner_path(current_owner)
-     end
+    if @dog.save
+      OwnerMailer.new_dog(@owner).deliver_now
+      redirect_to owner_path(current_owner)
+    end
   end
 
   def new
@@ -54,5 +52,5 @@ class DogsController < ApplicationController
   private
   def dog_params
     params.require(:dog).permit(:name, :description, :image, :address, :longitude, :latitude)
-end
+  end
 end
