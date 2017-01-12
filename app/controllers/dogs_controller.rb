@@ -17,6 +17,7 @@ class DogsController < ApplicationController
     @owner = current_owner
      if @dog.save
        OwnerMailer.new_dog(@owner).deliver_now
+       flash[:notice] = "You have successfully created a dog."
        redirect_to owner_path(current_owner)
      end
   end
@@ -39,6 +40,7 @@ class DogsController < ApplicationController
     dog_id = params[:id]
     dog = Dog.find_by(id: dog_id)
     if dog.update(dog_params)
+      flash[:notice] = "You have successfully updated your dog."
       redirect_to owner_path(owner)
     else
       redirect_to edit_owner_dog_path(owner, dog)
@@ -47,8 +49,10 @@ class DogsController < ApplicationController
 
   def destroy
     @dog = Dog.find_by_id(params[:id])
-    @dog.destroy
-    redirect_to owner_path(current_owner)
+    if @dog.destroy
+      flash[:notice] = "You have successfully deleted your dog."
+      redirect_to owner_path(current_owner)
+    end
   end
 
   private
