@@ -18,6 +18,8 @@
 							<%= button_to "edit owner", edit_owner_registration_path(@owner), method: :get, class:"btn btn-primary", type:"button" %>
 	        </div>
 	    </div>
+			<br>
+			<hr>
 	    <!-- <div class="page-header">
 	        <h3>Product Details</h3></div>
 	    <p>Sed mollis, urna eu tempus facilisis, diam tellus aliquam tortor, et vestibulum ante quam non justo. Nullam luctus rutrum mattis. Maecenas in pharetra mi, vel mollis odio. Morbi non mauris massa. </p>
@@ -56,19 +58,21 @@
 	    </div> -->
 
 
-
-	    <div class="page-header">
-	        <h3>My Pups</h3></div>
-	    <div class="media">
-	        <div class="media-body">
-						<% @owner.dogs.each do |dog| %>
-							<%= image_tag(dog.image, class: "dog-show-img")%>
-	            <h4><%= link_to dog.name, owner_dog_path(current_owner, dog) %></h4>
+			<div class="page-header">
+					<h3>My Pups</h3></div>
+			<div class="row projects">
+					<% @owner.dogs.each do |dog| %>
+					<div class="col-lg-4 col-sm-6 item">
+						<%= image_tag(dog.image, class: "img-responsive dog-index")%>
+							<h3 class="name"><%=link_to dog.name, owner_dog_path(dog.owner, dog) %></h3>
+							<p class="description"><%= dog.description %></p>
+							<% if current_sitter != nil && current_sitter.rentals.all? {|rental| rental.pending == false && rental.done_renting == true} %>
+							<%= link_to "rent dog",  new_dog_rental_path(dog) %>
 							<% end %>
-							<%= link_to "add a dog!", new_owner_dog_path(current_owner) %>
-	        </div>
-	    </div>
-			<br>
+							<br>
+					</div>
+					<% end %>
+			</div>
 
 			<div class="page-header">
 					<h3>Dogs Pending My Approval</h3></div>
@@ -77,7 +81,7 @@
 						<% @owner.dogs.each do |dog| %>
 						<% dog.rentals.each do |rental| %>
 						<% if rental.pending? %>
-							<h4><%= link_to rental.sitter.first, sitter_path(rental.sitter) %> for <%= rental.dog.name %><br></h4>
+							<h4><%= link_to rental.sitter.first, sitter_path(rental.sitter) %> wants to rent <%= rental.dog.name %><br></h4>
 							<%= link_to "approve or deny", dog_rental_path(dog, rental) %><br>
 							<% end %>
 							<% end %>
@@ -93,7 +97,8 @@
 						<% @owner.dogs.each do |dog| %>
 						<% dog.rentals.each do |rental| %>
 						<% if rental.approved? && rental.done_renting == false %>
-							<h4><%= rental.dog.name %> <%= link_to "finish rental", rental_path(rental), method: :patch %></h4>
+							<h4><%= rental.dog.name %></h4>
+							<%= button_to "finish rental", rental_path(rental), method: :patch, class:"btn btn-primary" %>
 							<% end %>
 							<% end %>
 							<% end %>
