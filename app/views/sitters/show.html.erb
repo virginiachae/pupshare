@@ -1,3 +1,5 @@
+
+
 <div class="top-margin">
 	<div class="container">
 	    <div class="row product">
@@ -5,56 +7,10 @@
 	        <div class="col-md-7">
 	            <h2><%= @sitter.first %> <%= @sitter.last %></h2>
 	            <p><%= @sitter.description %></p><br>
-	            <!-- <select>
-	                <option value="" selected="">Chose Your Size</option>
-	                <option value="xxl">XXL</option>
-	                <option value="xl">XL</option>
-	                <option value="m">M</option>
-	                <option value="s">S</option>
-	            </select> -->
-	            <!-- <h3>$149.90 </h3> -->
 							<% if current_sitter == Sitter.find(params[:id]) %>
-							<%= button_to "edit sitter", edit_sitter_registration_path(@sitter), method: :get, class:"btn btn-primary", type:"button" %>
+							<%= button_to "edit Pup Friend", edit_sitter_registration_path(@sitter), method: :get, class:"btn btn-primary", type:"button" %>
 	        </div>
 	    </div>
-	    <!-- <div class="page-header">
-	        <h3>Product Details</h3></div>
-	    <p>Sed mollis, urna eu tempus facilisis, diam tellus aliquam tortor, et vestibulum ante quam non justo. Nullam luctus rutrum mattis. Maecenas in pharetra mi, vel mollis odio. Morbi non mauris massa. </p>
-	    <div class="table-responsive">
-	        <table class="table table-striped">
-	            <thead>
-	                <tr>
-	                    <th>Column 1</th>
-	                    <th>Column 2</th>
-	                    <th>Column 3</th>
-	                </tr>
-	            </thead>
-	            <tbody>
-	                <tr>
-	                    <td>Cell1</td>
-	                    <td>Cell2</td>
-	                    <td>Cell3</td>
-	                </tr>
-	                <tr>
-	                    <td>Cell4</td>
-	                    <td>Cell5</td>
-	                    <td>Cell6</td>
-	                </tr>
-	                <tr>
-	                    <td>Cell7</td>
-	                    <td>Cell8</td>
-	                    <td>Cell9</td>
-	                </tr>
-	                <tr>
-	                    <td>Cell10</td>
-	                    <td>Cell11</td>
-	                    <td>Cell</td>
-	                </tr>
-	            </tbody>
-	        </table>
-	    </div> -->
-
-
 
 	    <div class="page-header">
 	        <h3>Dogs Pending Approval</h3></div>
@@ -63,6 +19,7 @@
 						<% @sitter.rentals.each do |rental| %>
 						<% if rental.pending? %>
 	            <h4><%= link_to rental.dog.name, dog_path(rental.dog) %></h4>
+							<p>Date Requested: <%= rental.created_at.strftime("%m-%d-%Y") %></p>
 								<%= link_to "cancel request", rental_path(rental), method: :delete %><br>
 							<% end %>
 							<% end %>
@@ -71,7 +28,7 @@
 			<br>
 			<hr>
 			<div class="page-header">
-					<h3>Dogs I am Watching</h3></div>
+					<h3>Dogs I am Currently Sharing</h3></div>
 			<div class="media">
 					<div class="media-body">
 						<% @sitter.rentals.each do |rental| %>
@@ -84,12 +41,16 @@
 			<br>
 			<hr>
 			<div class="page-header">
-					<h3>Dogs I Have Watched in the Past</h3></div>
+
+			<h3>Dogs I Was Approved For</h3></div>
 			<div class="media">
 					<div class="media-body">
+						<% @sitter.rentals %>
 						<% @sitter.rentals.each do |rental| %>
 						<% if rental.done_renting? %>
-							<h4><%= link_to rental.dog.name, dog_path(rental.dog) %></h4>
+							<h4>Dog Name: <%= link_to rental.dog.name, dog_path(rental.dog) %></h4>
+							<p>Date Requested: <%= rental.created_at.strftime("%m-%d-%Y") %></p>
+
 							<% end %>
 							<% end %>
 					</div>
@@ -99,15 +60,6 @@
 	    <hr>
 	    <%= link_to "Back", :back, method: :get %>
 	</div>
-<!-- <footer class="site-footer">
-	    <div class="container">
-	        <hr>
-	        <div class="row">
-	            <div class="col-sm-6">
-	                <h5>PupShare © 2016</h5></div>
-	            <div class="col-sm-6 social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
-	        </div>
-	    </div>
-	</footer> -->
+
 
 </div>

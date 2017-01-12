@@ -1,3 +1,13 @@
+
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://coffeescript.org/
+
+jQuery ->
+  $('#dog_date_start').datepicker()
+  $('#dog_date_end').datepicker()
+
+
 class RichMarkerBuilder extends Gmaps.Google.Builders.Marker #inherit from builtin builder
   #override create_marker method
   create_marker: ->
