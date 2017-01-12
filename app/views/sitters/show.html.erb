@@ -1,3 +1,31 @@
+
+<h1>Welcome
+	<%= @sitter.first %>
+	<%= @sitter.last %></h1>
+<%= image_tag @sitter.avatar.url(:medium) %>
+<p><%= @sitter.description %></p>
+<% if current_sitter == Sitter.find(params[:id]) %>
+<%= link_to "edit sitter", edit_sitter_registration_path(@sitter) %>
+<br>
+<hr>
+<h3>dogs I am watching</h3>
+<% @sitter.rentals.each do |rental| %>
+<% if rental.approved? && rental.done_renting == false %>
+ <%= rental.dog.name %> <%= link_to "finish rental", rental_path(rental), method: :patch %>
+ <br>
+ <% end %>
+ <% end %>
+ <hr>
+ <h3>dogs I have watched in the past</h3>
+ <% @sitter.rentals.each do |rental| %>
+ <% if rental.done_renting? %>
+  <%= rental.dog.name %>
+	<%= rental.dog.created_at.strftime("%m-%d-%Y") %>
+  <br>
+	<% end %>
+	<% end %>
+	<% end %>
+=======
 <div class="top-margin">
 	<div class="container">
 	    <div class="row product">
@@ -56,3 +84,4 @@
 	</div>
 
 </div>
+

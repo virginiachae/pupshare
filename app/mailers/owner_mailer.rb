@@ -14,7 +14,7 @@ class OwnerMailer < ApplicationMailer
 
   def pending_rental(owner)
     @owner = owner
-    mail(to: @owner.email, subject: 'Pending Pup Rental Request')
+    mail(to: @owner.email, subject: 'Pending Pup Share Request')
   end
 
 end
