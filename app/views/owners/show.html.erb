@@ -8,8 +8,10 @@
 	            <p><%= @owner.description %></p><br>
 
 							<% if current_owner == Owner.find(params[:id]) %>
-							<%= button_to "edit owner", edit_owner_registration_path(@owner), method: :get, class:"btn btn-primary", type:"button" %>
-	        </div>
+							<%= button_to "edit owner", edit_owner_registration_path(@owner), method: :get, class:"btn btn-primary", type:"button" %><br>
+							<%= button_to "add dog", new_owner_dog_path(@owner), method: :get, class:"btn btn-success", type:"button" %>
+
+					</div>
 	    </div>
 			<br>
 			<hr>
