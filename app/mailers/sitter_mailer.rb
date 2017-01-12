@@ -14,14 +14,14 @@ class SitterMailer < ApplicationMailer
 
   def scheduled_rental(sitter)
     @sitter = sitter
-    mail(to: @sitter.email, subject: 'Pending Pup Rental Request')
+    mail(to: @sitter.email, subject: 'Pending Pup Share Request')
   end
 
   def rental_approved(sitter, owner, rental)
     @sitter = sitter
     @owner = owner
     @rental = rental
-    mail(to: @sitter.email, subject: 'Rental Approved')
+    mail(to: @sitter.email, subject: 'Share Request Approved')
   end
 
   def declined_rental(sitter, rental)
