@@ -39,7 +39,7 @@
                 <% if current_sitter %>
                   <li role="presentation"><%= link_to 'My Sitter Profile', sitter_path(current_sitter) %></li>
                   <li role="presentation"><%= link_to("Logout: #{current_sitter.email}", destroy_sitter_session_path, :method => :delete) %></li>
-                <% else %>
+                <% elsif current_owner == nil %>
                   <li role="presentation"><%= link_to 'Login in Sitter', '/sitters/sign_in' %></li>
                   <li role="presentation"><%= link_to 'Signup Sitter', '/sitters/sign_up' %></li>
                 <% end %>
@@ -51,7 +51,7 @@
                 <% if current_owner %>
                   <li role="presentation"><%= link_to 'My Owner Profile', owner_path(current_owner) %></li>
                   <li role="presentation"><%= link_to("Logout: #{current_owner.email}", destroy_owner_session_path, :method => :delete) %></li>
-                <% else %>
+                <% elsif current_sitter == nil %>
                   <li role="presentation"><%= link_to 'Login in an Owner', '/owners/sign_in' %></li>
                   <li role="presentation"><%= link_to 'Signup as an Owner', '/owners/sign_up' %></li>
                 <% end %>
