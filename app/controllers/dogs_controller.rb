@@ -1,6 +1,6 @@
 class DogsController < ApplicationController
 
-before_action :authenticate_owner!
+before_action :authenticate_owner!, :only => [:edit, :update, :destroy, :new]
 
   def index
     @dogs = Dog.all
