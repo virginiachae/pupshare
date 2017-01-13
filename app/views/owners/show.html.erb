@@ -58,7 +58,7 @@
 						<% dog.rentals.each do |rental| %>
 						<% if rental.approved? && rental.done_renting == false %>
 							<h4><%= rental.dog.name %></h4>
-							<%= button_to "finish rental", rental_path(rental), method: :patch, class:"btn btn-primary" %>
+							<%= button_to "finish Pup Share", rental_path(rental), method: :patch, class:"btn btn-primary" %>
 							<% end %>
 							<% end %>
 							<% end %>
