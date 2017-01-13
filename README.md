@@ -24,6 +24,6 @@ Pupshare is a site designed for the  dog lover who wants to watch a dog but not 
 ![alt tag](http://i.imgur.com/qutFBCV.jpg)
 
 
-##  Planned Feaatures
+##  Planned Features
 
 Eventually we would like to intergrate comments/reviews so owners can leave reviews on their Pup friends while also allowing Pup friends to leave reviews on the dogs they watch.
