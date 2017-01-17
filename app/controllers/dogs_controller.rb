@@ -38,6 +38,7 @@ before_action :authenticate_owner!, :only => [:edit, :update, :destroy, :new]
     @dog = Dog.find_by_id(params[:id])
   end
 
+# it looks like image uploads aren't quite working - maybe something to test/improve on in the future
   def update
     owner = current_owner
     dog_id = params[:id]
