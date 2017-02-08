@@ -8,9 +8,8 @@ before_action :authenticate_owner!, :only => [:edit, :update, :destroy, :new]
       marker.lat dog.latitude
       marker.lng dog.longitude
       marker.infowindow dog.description
-      marker.json({
-              image: dog.image(:thumb)
-              })
+      marker.json({image: dog.image(:thumb)})
+
     end
   end
 
@@ -18,6 +17,7 @@ before_action :authenticate_owner!, :only => [:edit, :update, :destroy, :new]
     @dog = Dog.new(dog_params)
     @dog.owner = current_owner
     @owner = current_owner
+
      if @dog.save
        OwnerMailer.new_dog(@owner).deliver_now
        flash[:notice] = "You have successfully created a dog."
@@ -61,5 +61,5 @@ before_action :authenticate_owner!, :only => [:edit, :update, :destroy, :new]
   private
   def dog_params
     params.require(:dog).permit(:name, :description, :image, :address, :longitude, :latitude, :date_start, :date_end)
-end
+  end
 end
