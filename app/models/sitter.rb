@@ -1,6 +1,7 @@
 class Sitter < ApplicationRecord
     has_many :rentals, dependent: :destroy
     has_many :dogs, through: :rentals
+    has_many :reviews
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
