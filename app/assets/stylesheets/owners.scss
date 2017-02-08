@@ -10,6 +10,20 @@
   margin-bottom:40px;
 }
 
+.sign-in h2 {
+  text-align: center;
+}
+
+.sign-in {
+  font-size: 20px;
+  margin-top: 75px;
+
+}
+
+.sign-in p {
+  float: left;
+  margin-right: 10px;
+}
 
 @media (min-width:992px) {
   .product h2 {
@@ -17,6 +31,9 @@
   }
 }
 
+.field {
+  padding: 5px 0;
+}
 .navbar .navbar-brand {
   font-size:24px;
   line-height:18px;
@@ -44,6 +61,27 @@
 
 .site-footer .social-icons a:hover {
   opacity:1;
+}
+
+
+.actions input[type='submit'] {
+  font-size: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+input[type='checkbox'] {
+  width:20px;
+  height: 20px;
+}
+
+#owner_avatar {
+  height: 50px;
+  padding-top: 12px;
+}
+
+#owner_description {
+  height: 100px;
 }
 
 .site-footer .social-icons a {
@@ -74,4 +112,8 @@
 
 .top-margin {
 	margin-top: 30px;
+}
+
+.links {
+  float: right;
 }

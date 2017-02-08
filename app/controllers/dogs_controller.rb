@@ -60,11 +60,6 @@ before_action :authenticate_owner!, :only => [:edit, :update, :destroy]
 
   private
   def dog_params
-<<<<<<< HEAD
-    params.require(:dog).permit(:name, :description, :image, :address, :longitude, :latitude)
-  end
-=======
     params.require(:dog).permit(:name, :description, :image, :address, :longitude, :latitude, :date_start, :date_end)
-end
->>>>>>> 9c56eca7fbc07b6809b67faac9b1c91607bd4496
+  end
 end
