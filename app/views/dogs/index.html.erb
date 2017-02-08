@@ -1,4 +1,6 @@
-<script src="//maps.google.com/maps/api/js?key="ENV['GOOGLE_API']""></script>
+
+
+<script src="//maps.google.com/maps/api/js?key=AIzaSyBpoS8wBLRRkr2MGeRywG0E5_0tG3xV4cI"></script>
 
 
 <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
@@ -10,7 +12,7 @@
       <h2 class="text-center">Our Dogs</h2>
       <div class="col-xs-offset-1 col-xs-10" id="map" style='height: 400px;'></div>
         <div class="intro">
-            <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae. </p>
+            <p class="text-center">Nunck luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae. </p>
         </div>
         <div class="row projects">
             <% @dogs.each do |dog| %>
@@ -19,7 +21,7 @@
                 <h3 class="name"><%=link_to dog.name, owner_dog_path(dog.owner, dog) %></h3>
                 <p class="description"><%= dog.description %></p>
                 <% if current_sitter != nil && current_sitter.rentals.all? {|rental| rental.pending == false && rental.done_renting == true} %>
-                <%= link_to "rent dog",  new_dog_rental_path(dog) %>
+                <%= link_to "request to share this dog",  new_dog_rental_path(dog) %>
                 <% end %>
                 <br>
             </div>
