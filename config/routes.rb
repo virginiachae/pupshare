@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+  get 'reviews/index'
+
+  get 'reviews/new'
+
+  get 'reviews/create'
+
+  get 'reviews/edit'
+
+  get 'reviews/update'
+
+  get 'reviews/destroy'
+
   get 'owners/show'
 
   get 'sitters/show'
@@ -21,6 +33,11 @@ Rails.application.routes.draw do
   resources :dogs do
     resources:rentals
   end
+
+  resources :dogs do
+    resources :reviews
+  end
+
 
   resources :rentals
 

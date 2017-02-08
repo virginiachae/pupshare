@@ -13,28 +13,25 @@
             <%= button_to "delete dog", owner_dog_path(current_owner, @dog), method: :delete, class:"btn btn-danger", type:"button" %>
             <% end %>
             <% if current_sitter != nil && current_sitter.rentals.all? {|rental| rental.pending == false && rental.done_renting == true} %>
-            <%= button_to "request to share this dog",  new_dog_rental_path(@dog), method: :get, class:"btn btn-primary", type:"button" %>
+            <%= button_to "request to share this dog",  new_dog_rental_path(@dog), method: :get, class:"btn btn-primary", type:"button" %><br>
+            
             <% end %>
         </div>
     </div>
     <div class="page-header">
         <h3>Reviews<button class="btn btn-primary write-review" type="button">Write a review</button></h3></div>
+        <% @dog.reviews.reverse.each do |review| %>
     <div class="media">
         <div class="media-body">
-            <h4>Love this!</h4>
-            <div><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i></div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus nisl ac diam feugiat, non vestibulum libero posuere. Vivamus pharetra leo non nulla egestas, nec malesuada orci finibus. </p>
-            <p><span class="reviewer-name"><strong>John Doe</strong></span><span class="review-date">7 Oct 2015</span></p>
+            <h4><%= review.title %></h4>
+            <div> <p><%= review.comment %></p> </div>
+
+            <p><span class="reviewer-name"><strong><%= review.sitter.first %></strong></span><span class="review-date"><%= time_ago_in_words(review.created_at) %> ago</span></p>
         </div>
     </div>
-    <div class="media">
-        <div class="media-body">
-            <h4>Fantastic product</h4>
-            <div><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus nisl ac diam feugiat, non vestibulum libero posuere. Vivamus pharetra leo non nulla egestas, nec malesuada orci finibus. </p>
-            <p><span class="reviewer-name"><strong>Jane Doe</strong></span><span class="review-date">7 Oct 2015</span></p>
-        </div>
-    </div>
+      <% end %>
+
+
     <br>
     <hr>
     <%= link_to "Back", :back, method: :get %>
