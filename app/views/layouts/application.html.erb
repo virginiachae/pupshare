@@ -28,15 +28,16 @@
         <div class="navbar-header">
           <%= link_to dogs_path, method: :get, class: "navbar-brand navbar-link" do %>
             <i class="icon fa fa-paw">PupShare</i>
-              <% end %>
+          <% end %>
           <button class="navbar-toggle collapsed" data-target="#navcol-1" data-toggle="collapse"></button>
         </div>
         <div id="navcol-1" class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
+            <% if current_owner == nil %>
             <li class="dropdown">
               <a class="dropdown-toggle" aria-expanded="false" href="#" data-toggle="dropdown">Pup Friend<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                
+
                 <% if current_sitter %>
                   <li role="presentation"><%= link_to 'My Pup Friend Profile', sitter_path(current_sitter) %></li>
                   <li role="presentation"><%= link_to("Logout: #{current_sitter.email}", destroy_sitter_session_path, :method => :delete) %></li>
@@ -44,22 +45,32 @@
                 <% elsif current_owner == nil %>
                   <li role="presentation"><%= link_to 'Login in Pup Friend', '/sitters/sign_in' %></li>
                   <li role="presentation"><%= link_to 'Signup Pup Friend', '/sitters/sign_up' %></li>
+
                 <% end %>
+              <% end %>
 
               </ul>
             </li>
+
+            <% if current_sitter == nil %>
             <li class="dropdown">
               <a class="dropdown-toggle" aria-expanded="false" href="#" data-toggle="dropdown">Owner<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
+
                 <% if current_owner %>
                   <li role="presentation"><%= link_to 'My Owner Profile', owner_path(current_owner) %></li>
                   <li role="presentation"><%= link_to("Logout: #{current_owner.email}", destroy_owner_session_path, :method => :delete) %></li>
+
                 <% elsif current_sitter == nil %>
                   <li role="presentation"><%= link_to 'Login in an Owner', '/owners/sign_in' %></li>
                   <li role="presentation"><%= link_to 'Signup as an Owner', '/owners/sign_up' %></li>
+
                 <% end %>
+              <% end %>
+
               </ul>
             </li>
+
           </ul>
         </div>
       </div>
