@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170111200506) do
+ActiveRecord::Schema.define(version: 20170208200826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,9 @@ ActiveRecord::Schema.define(version: 20170111200506) do
     t.float    "latitude"
     t.string   "date_start"
     t.string   "date_end"
+    t.integer  "review_id"
     t.index ["owner_id"], name: "index_dogs_on_owner_id", using: :btree
+    t.index ["review_id"], name: "index_dogs_on_review_id", using: :btree
   end
 
   create_table "owners", force: :cascade do |t|
@@ -74,6 +76,17 @@ ActiveRecord::Schema.define(version: 20170111200506) do
     t.index ["sitter_id"], name: "index_rentals_on_sitter_id", using: :btree
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.string   "title"
+    t.string   "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "dog_id"
+    t.integer  "sitter_id"
+    t.index ["dog_id"], name: "index_reviews_on_dog_id", using: :btree
+    t.index ["sitter_id"], name: "index_reviews_on_sitter_id", using: :btree
+  end
+
   create_table "sitters", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -94,12 +107,18 @@ ActiveRecord::Schema.define(version: 20170111200506) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "review_id"
     t.index ["email"], name: "index_sitters_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_sitters_on_reset_password_token", unique: true, using: :btree
+    t.index ["review_id"], name: "index_sitters_on_review_id", using: :btree
   end
 
   add_foreign_key "dogs", "owners"
+  add_foreign_key "dogs", "reviews"
   add_foreign_key "owners", "dogs"
   add_foreign_key "rentals", "dogs"
   add_foreign_key "rentals", "sitters"
+  add_foreign_key "reviews", "dogs"
+  add_foreign_key "reviews", "sitters"
+  add_foreign_key "sitters", "reviews"
 end

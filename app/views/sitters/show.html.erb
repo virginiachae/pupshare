@@ -34,6 +34,7 @@
 						<% @sitter.rentals.each do |rental| %>
 						<% if rental.approved? && rental.done_renting == false %>
 							<h4><%= link_to rental.dog.name, dog_path(rental.dog) %></h4>
+							<%= button_to "add review to this dog",  new_dog_review_path(rental.dog), method: :get, class:"btn btn-primary", type:"button" %>
 							<% end %>
 							<% end %>
 					</div>
@@ -50,6 +51,7 @@
 						<% if rental.done_renting? %>
 							<h4>Dog Name: <%= link_to rental.dog.name, dog_path(rental.dog) %></h4>
 							<p>Date Requested: <%= rental.created_at.strftime("%m-%d-%Y") %></p>
+							<%= button_to "add review to this dog",  new_dog_review_path(rental.dog), method: :get, class:"btn btn-primary", type:"button" %>
 
 							<% end %>
 							<% end %>
