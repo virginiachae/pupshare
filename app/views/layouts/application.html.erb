@@ -36,7 +36,7 @@
             <li class="dropdown">
               <a class="dropdown-toggle" aria-expanded="false" href="#" data-toggle="dropdown">Pup Friend<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                
+
                 <% if current_sitter %>
                   <li role="presentation"><%= link_to 'My Pup Friend Profile', sitter_path(current_sitter) %></li>
                   <li role="presentation"><%= link_to("Logout: #{current_sitter.email}", destroy_sitter_session_path, :method => :delete) %></li>
@@ -73,5 +73,8 @@
     <%- end -%>
 
     <%= yield %>
+
+
+
   </body>
 </html>

@@ -14,7 +14,7 @@
             <% end %>
             <% if current_sitter != nil && current_sitter.rentals.all? {|rental| rental.pending == false && rental.done_renting == true} %>
             <%= button_to "request to share this dog",  new_dog_rental_path(@dog), method: :get, class:"btn btn-primary", type:"button" %><br>
-            
+
             <% end %>
         </div>
     </div>
@@ -27,8 +27,13 @@
             <div> <p><%= review.comment %></p> </div>
 
             <p><span class="reviewer-name"><strong><%= review.sitter.first %></strong></span><span class="review-date"><%= time_ago_in_words(review.created_at) %> ago</span></p>
+
         </div>
     </div>
+    <% if current_sitter == review.sitter %>
+    <%= button_to "Edit Review", edit_dog_review_path(@dog, review), method: :get, class:"btn btn-primary", type:"button" %><br>
+    <%= button_to "Delete Review", dog_review_path(@dog, review), method: :delete, class:"btn btn-danger", type:"button" %>
+    <% end %>
       <% end %>
 
 
