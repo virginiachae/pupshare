@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="review_form">
+
+
 <h1>Add Review </h1>
 <%= form_for [@dog, @review] do |f| %>
 <%= f.text_field :title, placeholder: "Title", class: "form-control" %></br>
@@ -6,4 +9,5 @@
 
 <%= f.submit "Add Review", class: "btn btn-primary" %>
 <% end %>
+  </div>
 </div>
