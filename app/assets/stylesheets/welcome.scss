@@ -4,6 +4,23 @@
 .navbar {
   margin-bottom:0;
   border:none;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  background: transparent;
+  background-color: transparent;
+}
+
+.hero-btn{
+  background-color: rgba(0, 0, 0, .2) !important;
+  background: rgba(0, 0, 0, .2) !important;
+  border-color: white !important;
+}
+
+.hero-btn:hover{
+  background-color: transparent !important;
+  background: transparent !important;
+  border-color: white !important;
 }
 
 .navbar-brand .glyphicon {
@@ -12,10 +29,40 @@
 
 .hero {
   background:url('http://i.imgur.com/AyJT48R.jpg') no-repeat center;
-  background-size:cover;
+  background-size: cover;
   border:none;
   height: 100vh;
-  
+}
+
+.pupshare{
+  padding-top: 10%;
+  text-align: center;
+  font-size: 100px !important;
+  color: white !important;
+  text-shadow: 1px 1px #000000;
+}
+
+.pupshare:hover{
+  text-decoration: none;
+}
+
+.pupBlurb{
+  padding-top: 10%;
+  background-image: url('http://i.imgur.com/xcyoZow.jpg');
+  background-size: cover;
+  height: 100vh;
+  color: black;
+  opacity: .6;
+}
+
+.pupBlurb p{
+  font-size: 18px;
+  color: black !important;
+}
+
+.links{
+  text-align: center;
+  padding-top: 5%;
 }
 
 @media (min-width:992px) {
