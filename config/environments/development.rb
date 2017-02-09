@@ -65,6 +65,7 @@ Rails.application.configure do
    password: "Pup123456"
 
  }
+
 # 
 #  config.paperclip_defaults = {
 #   storage: :s3,
